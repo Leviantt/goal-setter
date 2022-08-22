@@ -2,7 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const goalRouter = require('./routes/goalRouter');
 const { errorHandler } = require('./middlewares/errorMiddleware');
+const { connectDB } = require('./config/db.js');
 const port = process.env.PORT || 5000;
+
+connectDB();
 
 const app = express();
 app.use(express.json());
