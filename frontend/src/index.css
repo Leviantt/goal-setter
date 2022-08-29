@@ -32,14 +32,14 @@ h1,
 h2,
 h3 {
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: .625rem;
 }
 
 .container {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 1.25em;
   text-align: center;
 }
 
@@ -47,9 +47,9 @@ h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 1.25em 0;
   border-bottom: 1px solid #e6e6e6;
-  margin-bottom: 60px;
+  margin-bottom: 3em;
 }
 
 .header ul {
@@ -59,7 +59,7 @@ h3 {
 }
 
 .header ul li {
-  margin-left: 20px;
+  margin-left: 1.25em;
 }
 
 .header ul li a {
@@ -72,7 +72,7 @@ h3 {
 }
 
 .header ul li a svg {
-  margin-right: 5px;
+  margin-right: .3125em;
 }
 
 .logo {
@@ -83,8 +83,8 @@ h3 {
 .heading {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 50px;
-  padding: 0 20px;
+  margin-bottom: 3.125em;
+  padding: 0 1.25em;
 }
 
 .heading p {
@@ -93,21 +93,24 @@ h3 {
 
 .goals {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px;
 }
 
 .goal {
   background-color: #f4f4f4;
-  margin: 10px 0;
-  padding: 20px 0 10px;
+  margin: .625em 0;
+  padding: 1.25em 0 .625em;
   position: relative;
+  font-size: .75rem;
 }
 
 .goal .close {
   position: absolute;
   top: 10px;
+  top: 7px;
   right: 15px;
+  right: 7px;
   cursor: pointer;
   border: none;
   background: none;
@@ -120,33 +123,33 @@ h3 {
 }
 
 .form-group {
-  margin-bottom: 10px;
+  margin-bottom: .625em;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
   width: 100%;
-  padding: 10px;
+  padding: .625em;
   border: 1px solid #e6e6e6;
-  border-radius: 5px;
-  margin-bottom: 10px;
+  border-radius: .3125rem;
+  margin-bottom: .625em;
   font-family: inherit;
 }
 
 .form-group label {
   text-align: left;
   display: block;
-  margin: 0 0 5px 3px;
+  margin: 0 0 .3125em .1875em;
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: .625em 1.25em;
   border: 1px solid #000;
-  border-radius: 5px;
+  border-radius: .3125rem;
   background: #000;
   color: #fff;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   text-align: center;
@@ -157,7 +160,7 @@ h3 {
 }
 
 .btn svg {
-  margin-right: 8px;
+  margin-right: .5em;
 }
 
 .btn-reverse {
@@ -167,7 +170,7 @@ h3 {
 
 .btn-block {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 1.25em;
 }
 
 .btn:hover {
@@ -209,10 +212,11 @@ h3 {
   .form {
     width: 90%;
   }
-  /* .heading {
-    width: 60%;
-    margin: 0 auto 50px;
-  } */
+
+  .goal {
+    font-size: 1rem;
+    padding: 1.75em .5em .75em;
+  }
 
   .heading h1 {
     font-size: 2rem;

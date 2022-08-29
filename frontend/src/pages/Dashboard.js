@@ -1,7 +1,63 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Spinner from "../components/Spinner.js";
+import GoalForm from "../components/GoalForm.js";
+import { getGoals, reset } from "../features/goals/goalSlice.js";
+import GoalItem from "../components/GoalItem.js";
+
 function Dashboard() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.auth);
+
+  const { goals, isError, isLoading, message } = useSelector(
+    (state) => state.goal
+  );
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+
+    if (!user) {
+      navigate("/login");
+    }
+
+    dispatch(getGoals());
+
+    return () => {
+      dispatch(reset());
+    };
+  }, [user, navigate, dispatch]);
+
+  if (isLoading) return <Spinner />;
+
   return (
-    <div>Dashboard</div>
-  )
+    <>
+      <section className="heading">
+        <h1>Welcome{user && ", " + user.name}</h1>
+        <p>Goals Dashboard</p>
+      </section>
+      <GoalForm />
+      <section className="content">
+        {goals.length > 0 ? (
+          <div className="goals">
+            {goals.map((goal) => {
+              console.log(`in Dashboard.js`);
+              console.log(`goal`);
+              console.log(goal);
+              console.log(`goal.id = ${goal._id}`);
+              return <GoalItem key={goal._id} goal={goal} />;
+            })}
+          </div>
+        ) : (
+          <h3>You have not set any goals yet</h3>
+        )}
+      </section>
+    </>
+  );
 }
 
-export default Dashboard
+export default Dashboard;

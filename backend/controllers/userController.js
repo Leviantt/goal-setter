@@ -22,33 +22,32 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     name,
     email,
-    password: hashedPassword
+    password: hashedPassword,
   });
-  if(user) {
+  if (user) {
     res.status(201);
     res.json({
       id: user.id,
       name: user.name,
       email: user.email,
-      token: generateToken(user.id)
+      token: generateToken(user.id),
     });
   } else {
     res.status(400);
     throw new Error("Invalid user data");
   }
-
 });
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await User.findOne({email});
-  if(user && (await bcrypt.compare(password, user.password))) {
+  const user = await User.findOne({ email });
+  if (user && (await bcrypt.compare(password, user.password))) {
     res.json({
       id: user.id,
       name: user.name,
       email: user.email,
-      token: generateToken(user.id)
+      token: generateToken(user.id),
     });
   } else {
     res.status(400);
@@ -57,15 +56,11 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 const getMe = asyncHandler(async (req, res) => {
-  res.status(200).json({
-    id: req.user.id,
-    name: req.user.name,
-    email: req.user.email
-  });
+  res.status(200).json(req.user);
 });
 
 function generateToken(id) {
-    return jwt.sign({ id }, process.env.JWT_SECRET);
+  return jwt.sign({ id }, process.env.JWT_SECRET);
 }
 
 module.exports = {
