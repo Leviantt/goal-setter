@@ -22,14 +22,10 @@ function Login() {
 
   useEffect(() => {
     if (isError) {
-      console.log('in Login.js if(isError)');
       toast.error(message);
     }
-  
+
     if (isSuccess || user) {
-      console.log('in Login.js if(isSuccess || user)');
-      console.log(`isSuccess: ${isSuccess}`);
-      console.log(`user: ${user}`);
       nagivate("/");
     }
 
