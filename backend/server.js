@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 const express = require("express");
 const goalRouter = require("./routes/goalRouter");
 const userRouter = require("./routes/userRouter");
@@ -14,6 +15,16 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/goals", goalRouter);
 app.use("/api/users", userRouter);
+
+if (process.env.MODE === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(
+      path.resolve(__dirname, "../", "frontend", "build", "index.html")
+    );
+  });
+}
 
 app.use(errorHandler);
 

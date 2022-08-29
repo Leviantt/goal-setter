@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// change when deploy
+
 const API_URL = "/api/users/";
 
 const register = async (userData) => {
